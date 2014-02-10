@@ -7,6 +7,6 @@ public class Number {
         this.representation = representation;
     }
     public int getResult(){
-        return 1;
+        return Integer.valueOf(representation);
     }
 }
