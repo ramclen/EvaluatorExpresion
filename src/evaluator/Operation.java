@@ -3,7 +3,7 @@ package evaluator;
 import evaluator.Number;
 import evaluator.Number;
 
-class Operation {
+public class Operation implements Expresion{
     private Number left;
     private Number right;
 
@@ -12,8 +12,8 @@ class Operation {
         this.right = right;
     }
 
-    Object getResult() {
-        return 3;
+    public int getResult() {
+        return left.getResult() + right.getResult();
     }
     
     
