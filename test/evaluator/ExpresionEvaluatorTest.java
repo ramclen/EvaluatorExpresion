@@ -10,4 +10,10 @@ public class ExpresionEvaluatorTest {
         Assert.assertEquals(2, new Number("2").getResult()); 
     }
     
+    @Test
+    public void sumTest(){
+        Operation operation = new Operation("+", new Number("1"), new Number("2"));
+        Assert.assertEquals(3, operation);
+    }
+    
 }
