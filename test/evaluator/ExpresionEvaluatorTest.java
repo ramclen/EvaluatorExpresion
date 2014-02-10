@@ -17,6 +17,7 @@ public class ExpresionEvaluatorTest {
     public void constantTest(){
         ExpresionEvaluator evaluator = new ExpresionEvaluator();
         Assert.assertEquals(1, evaluator.execute("1")); 
+        Assert.assertEquals(1, evaluator.execute("2")); 
     }
     
 
