@@ -14,6 +14,9 @@ public class ExpresionEvaluatorTest {
     public void sumTest(){
         Operation operation = new Operation("+", new Number("1"), new Number("2"));
         Assert.assertEquals(3, operation.getResult());
+        
+        operation = new Operation("+", new Number("5"), new Number("2"));
+        Assert.assertEquals(7, operation.getResult());
     }
     
 }
