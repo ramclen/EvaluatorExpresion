@@ -26,4 +26,9 @@ public class ExpresionEvaluatorTest {
         Assert.assertEquals(7, sumOperation.getResult());
     }
     
+    public void evaluatorExpressionTest(){
+        ExpressionEvaluator evaluator = new ExpressionEvaluator();
+        Assert.assertEquals(7, evaluator.getOperation("1+2*3").getResult());
+    }
+    
 }
