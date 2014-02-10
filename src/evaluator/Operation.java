@@ -4,16 +4,18 @@ import evaluator.Number;
 import evaluator.Number;
 
 public class Operation implements Expresion{
-    private Number left;
-    private Number right;
-
-    public Operation(String symbol, Number left, Number right) {
+    private Expresion left;
+    private Expresion right;
+    private Symbol symbol;
+    
+    public Operation(String symbol, Expresion left, Expresion right) {
         this.left = left;
         this.right = right;
+        this.symbol = new SymbolDictionary().get(symbol);
     }
 
     public int getResult() {
-        return left.getResult() + right.getResult();
+        return symbol.calculate(left, right);
     }
     
     
