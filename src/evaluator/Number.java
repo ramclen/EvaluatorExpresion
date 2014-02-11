@@ -1,6 +1,6 @@
 package evaluator;
 
-public class Number implements Expresion{
+public class Number implements Expression{
     private String representation;
 
     public Number(String representation) {

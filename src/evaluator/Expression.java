@@ -1,5 +1,5 @@
 package evaluator;
 
-public interface Expresion {
+public interface Expression {
     public abstract int getResult();
 }

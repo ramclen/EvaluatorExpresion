@@ -1,5 +1,5 @@
 package evaluator;
 
 public interface Symbol {
-    public int calculate(Expresion left, Expresion right);
+    public int calculate(Expression left, Expression right);
 }
