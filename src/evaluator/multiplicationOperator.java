@@ -1,6 +1,6 @@
 package evaluator;
 
-public class multiplicationSymbol implements Symbol{
+public class multiplicationOperator implements Operator{
     
     @Override
     public int calculate(Expression left, Expression right) {

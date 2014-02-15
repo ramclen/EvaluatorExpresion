@@ -1,5 +1,5 @@
 package evaluator;
 
-public interface Symbol {
+public interface Operator {
     public int calculate(Expression left, Expression right);
 }

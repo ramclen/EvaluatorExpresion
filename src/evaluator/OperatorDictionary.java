@@ -2,12 +2,14 @@ package evaluator;
 
 import java.util.HashMap;
 
-public class SymbolDictionary extends HashMap<String, Symbol>{
+public class OperatorDictionary extends HashMap<String, Operator>{
     
 
-    public SymbolDictionary() {
+    public OperatorDictionary() {
         super();
-        put("*", new multiplicationSymbol());
-        put("+", new SumSymbol());
+        put("*", new multiplicationOperator());
+        put(":", new multiplicationOperator());
+        put("+", new multiplicationOperator());
+        put("-", new SumOperator());
     }
 }

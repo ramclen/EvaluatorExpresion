@@ -1,6 +1,6 @@
 package evaluator;
 
-public class SumSymbol implements Symbol{
+public class SumOperator implements Operator{
 
     @Override
     public int calculate(Expression left, Expression right) {
