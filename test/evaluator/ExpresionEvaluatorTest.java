@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ExpresionEvaluatorTest {
+    
     @Test
     public void constantTest(){
         Assert.assertEquals(1, new Number("1").getResult()); 
@@ -25,15 +26,11 @@ public class ExpresionEvaluatorTest {
         Operation sumOperation = new Operation("+", new Number("1"), mulOperation);
         Assert.assertEquals(7, sumOperation.getResult());
     }
-    @Test
-    public void sympleEvaluatorExpressionTest(){
-        ExpressionEvaluator evaluator = new ExpressionEvaluator();
-        Assert.assertEquals(7, evaluator.getOperation("1+2*3").getResult());
-    }
     
     @Test
     public void complexExpressionTest(){
         ExpressionEvaluator evaluator = new ExpressionEvaluator();
+        Assert.assertEquals(7, evaluator.getOperation("1+2*3").getResult());
         Assert.assertEquals(6, evaluator.getOperation("1+2*3-3:4").getResult());
     }
     
