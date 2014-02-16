@@ -11,5 +11,6 @@ public class OperatorDictionary extends HashMap<String, Operator>{
         put(":", new DivisionOperator());
         put("+", new SumOperator());
         put("-", new SubtractionOperator());
+        put("<", new LessThanOperator());
     }
 }

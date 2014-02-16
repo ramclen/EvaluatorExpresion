@@ -29,8 +29,8 @@ public class ExpresionEvaluatorTest {
     
     @Test
     public void lessThanTest(){
-        Operation sumOperation = new Operation("<", new Constant(1), new Constant(3));
-        Assert.assertEquals(7, sumOperation.getResult().getValue());
+        Operation lessThantOperation = new Operation("<", new Constant(1), new Constant(3));
+        Assert.assertEquals(true, lessThantOperation.getResult().getValue());
     }
     
     
