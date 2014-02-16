@@ -1,5 +1,9 @@
-package evaluator;
+package evaluator.Operators;
+
+import evaluator.Constant;
+import evaluator.Expression;
+import evaluator.Value;
 
 public interface Operator {
-    public int calculate(Expression left, Expression right);
+    public Value calculate(Expression left, Expression right);
 }

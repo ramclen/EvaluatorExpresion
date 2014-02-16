@@ -1,4 +1,4 @@
-package evaluator;
+package evaluator.Operators;
 
 import java.util.HashMap;
 
@@ -7,9 +7,9 @@ public class OperatorDictionary extends HashMap<String, Operator>{
 
     public OperatorDictionary() {
         super();
-        put("*", new multiplicationOperator());
-        put(":", new multiplicationOperator());
-        put("+", new multiplicationOperator());
-        put("-", new SumOperator());
+        put("*", new MultiplicationOperator());
+        put(":", new DivisionOperator());
+        put("+", new SumOperator());
+        put("-", new SubtractionOperator());
     }
 }

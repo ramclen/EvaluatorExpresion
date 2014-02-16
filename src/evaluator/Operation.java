@@ -1,9 +1,9 @@
 package evaluator;
 
-import evaluator.Number;
-import evaluator.Number;
+import evaluator.Operators.OperatorDictionary;
+import evaluator.Operators.Operator;
 
-public class Operation implements Expression{
+public class Operation <Type>implements Expression{
     private Expression left;
     private Expression right;
     private Operator symbol;
@@ -14,7 +14,7 @@ public class Operation implements Expression{
         this.symbol = new OperatorDictionary().get(symbol);
     }
 
-    public int getResult() {
+    public Value getResult() {
         return symbol.calculate(left, right);
     }
     

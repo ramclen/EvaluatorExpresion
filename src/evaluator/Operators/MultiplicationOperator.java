@@ -1,9 +1,15 @@
-package evaluator;
+package evaluator.Operators;
 
-public class multiplicationOperator implements Operator{
+import evaluator.Constant;
+import evaluator.Expression;
+import evaluator.Value;
+
+public class MultiplicationOperator implements Operator{
     
     @Override
-    public int calculate(Expression left, Expression right) {
-        return left.getResult() * right.getResult();
+    public Value calculate(Expression left, Expression right) {
+        int result = (int) left.getResult().getValue() * (int) right.getResult().getValue();
+        return new Value(result);
     }
+    
 }
