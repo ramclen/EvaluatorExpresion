@@ -7,30 +7,30 @@ public class ExpresionEvaluatorTest {
     
     @Test
     public void constantTest(){
-        Assert.assertEquals(1, new Constant(1).getResult().getValue()); 
-        Assert.assertEquals(2, new Constant(2).getResult().getValue()); 
+        Assert.assertEquals(1, new Constant(1).getResult()); 
+        Assert.assertEquals(2, new Constant(2).getResult()); 
     }
     
     @Test
     public void sumTest(){
         Operation operation = new Operation("+", new Constant(1), new Constant(2));
-        Assert.assertEquals(3, operation.getResult().getValue());
+        Assert.assertEquals(3, operation.getResult());
         
         operation = new Operation("+", new Constant(5), new Constant(2));
-        Assert.assertEquals(7, operation.getResult().getValue());
+        Assert.assertEquals(7, operation.getResult());
     }
     
     @Test
     public void multiplicationAndSumTest(){
         Operation mulOperation = new Operation("*", new Constant(2), new Constant(3));
         Operation sumOperation = new Operation("+", new Constant(1), mulOperation);
-        Assert.assertEquals(7, sumOperation.getResult().getValue());
+        Assert.assertEquals(7, sumOperation.getResult());
     }
     
     @Test
     public void lessThanTest(){
         Operation lessThantOperation = new Operation("<", new Constant(1), new Constant(3));
-        Assert.assertEquals(true, lessThantOperation.getResult().getValue());
+        Assert.assertEquals(true, lessThantOperation.getResult());
     }
     
     

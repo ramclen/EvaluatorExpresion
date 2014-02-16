@@ -1,5 +1,5 @@
 package evaluator;
 
 public interface Expression {
-    public abstract Value getResult();
+    public abstract <Type> Type getResult();
 }

@@ -8,7 +8,7 @@ public class Constant <Type> implements  Expression{
     }
     
     @Override
-    public Value getResult() {
-        return value;
+    public Type getResult() {
+        return (Type) value.getValue();
     }
 }
