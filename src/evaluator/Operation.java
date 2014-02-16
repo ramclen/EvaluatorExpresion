@@ -16,7 +16,7 @@ public class Operation implements Expression{
     
     @Override
     public <Type>Type getResult() {
-        return (Type) symbol.calculate(left, right).getValue();
+        return (Type) symbol.calculate(left, right);
     }
     
 }
