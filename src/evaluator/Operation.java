@@ -1,22 +1,21 @@
 package evaluator;
 
-import evaluator.Operators.OperatorDictionary;
 import evaluator.Operators.Operator;
 
 public class Operation implements Expression{
     private Expression left;
     private Expression right;
-    private Operator symbol;
+    private Operator operator;
     
     public Operation(String symbol, Expression left, Expression right) {
         this.left = left;
         this.right = right;
-        this.symbol = new OperatorDictionary().get(symbol);
+        this.operator = new OperatorFactory().create(symbol, left.getResult(), right.getResult());
     }
     
     @Override
     public <Type>Type getResult() {
-        return (Type) symbol.calculate(left, right);
+        return (Type) operator.calculate(left.getResult(), right.getResult());
     }
     
 }

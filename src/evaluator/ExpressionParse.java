@@ -1,6 +1,5 @@
 package evaluator;
 
-import evaluator.Operators.OperatorDictionary;
 
 public class ExpressionParse {
     private final String[] operators = {"*",":","+","-"};

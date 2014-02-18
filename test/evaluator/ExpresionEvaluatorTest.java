@@ -33,7 +33,6 @@ public class ExpresionEvaluatorTest {
         Assert.assertEquals(true, lessThantOperation.getResult());
     }
     
-    
     public void complexExpressionTest(){
         ExpressionEvaluator evaluator = new ExpressionEvaluator();
         Assert.assertEquals(7, evaluator.getOperation("1+2*3").getResult());
