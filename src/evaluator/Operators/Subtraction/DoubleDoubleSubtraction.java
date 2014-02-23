@@ -1,8 +1,8 @@
-package evaluator.Operators.Substraction;
+package evaluator.Operators.Subtraction;
 
 import evaluator.Operators.Operator;
 
-public class DoubleDoubleSubstraction implements Operator {
+public class DoubleDoubleSubtraction implements Operator {
 
     @Override
     public Object calculate(Object left, Object right) {

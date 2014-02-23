@@ -1,4 +1,4 @@
-package evaluator.Operators.lessThan;
+package evaluator.Operators.LessThan;
 
 import evaluator.Operators.Operator;
 

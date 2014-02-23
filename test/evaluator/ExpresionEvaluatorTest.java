@@ -19,7 +19,7 @@ public class ExpresionEvaluatorTest {
         operation = new Operation("+", new Constant(5), new Constant(2));
         Assert.assertEquals(7, operation.getResult());
     }
-    
+
     @Test
     public void multiplicationAndSumTest(){
         Operation mulOperation = new Operation("*", new Constant(2), new Constant(3));
