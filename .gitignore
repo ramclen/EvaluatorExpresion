@@ -3,3 +3,7 @@
 *.xml
 src/evaluator/.idea/
 /build
+*.class
+out/
+.idea/.name
+EvaluatorExpresion.iml

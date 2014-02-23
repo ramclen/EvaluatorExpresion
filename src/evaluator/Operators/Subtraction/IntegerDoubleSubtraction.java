@@ -6,7 +6,7 @@ public class IntegerDoubleSubtraction implements Operator {
 
     @Override
     public Object calculate(Object left, Object right) {
-        return (Integer)left + (Double)right;
+        return (Integer)left - (Double)right;
     }
 
 
