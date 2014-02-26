@@ -23,13 +23,13 @@ public class ExpresionEvaluatorTest {
     @Test
     public void parserExpressionGetExpresionTest(){
         ExpressionParser parser = new ExpressionParser();
-        ArrayList<Character> operatorList = new ArrayList();
+        ArrayList<String> operatorList = new ArrayList();
         ArrayList<Expression> expressionList = new ArrayList();
         expressionList.add(new Constant(1));
         expressionList.add(new Constant(2));
         expressionList.add(new Constant(3));
-        operatorList.add('+');
-        operatorList.add('*');
+        operatorList.add("+");
+        operatorList.add("*");
         Assert.assertEquals(7, parser.getExpression(expressionList, operatorList).getResult());
     }
 
