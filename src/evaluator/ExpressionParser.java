@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ExpressionParse {
+public class ExpressionParser {
     private final Character[] operators = {'*',':','+','-'};
     
     public Expression toExpresion(String expresionString){
@@ -46,7 +46,7 @@ public class ExpressionParse {
         
     }
 
-    private Expression getExpresion(List<Expression> expresionList, List<Character> operatorList) {
+    public Expression getExpresion(List<Expression> expresionList, List<Character> operatorList) {
         if (operatorList.size()!=0) {
             return new Operation(operatorList.get(operatorList.size() - 1).toString(),
                     expresionList.get(expresionList.size() - 1),

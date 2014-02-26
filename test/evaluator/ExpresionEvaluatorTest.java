@@ -3,6 +3,8 @@ package evaluator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class ExpresionEvaluatorTest {
     
     @Test
@@ -19,9 +21,23 @@ public class ExpresionEvaluatorTest {
     }
 
     @Test
-    public void complexExpressionTest(){
-        ExpressionEvaluator evaluator = new ExpressionEvaluator();
-        Assert.assertEquals(7, evaluator.getOperation("1+2*3").getResult());
+    public void parserExpressionGetExpresionTest(){
+        ExpressionParser parser = new ExpressionParser();
+        ArrayList<Character> operatorList = new ArrayList();
+        ArrayList<Expression> expressionList = new ArrayList();
+        expressionList.add(new Constant(1));
+        expressionList.add(new Constant(2));
+        expressionList.add(new Constant(3));
+        operatorList.add('+');
+        operatorList.add('*');
+        Assert.assertEquals(7, parser.getExpresion(expressionList, operatorList));
     }
-    
+
+     public void parserExpressionTest() {
+        ExpressionParser parser = new ExpressionParser();
+        Assert.assertEquals(7, parser.toExpresion("1+2*3"));
+    }
+
+
+
 }
