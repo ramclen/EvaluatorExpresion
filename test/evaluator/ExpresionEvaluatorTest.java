@@ -30,12 +30,13 @@ public class ExpresionEvaluatorTest {
         expressionList.add(new Constant(3));
         operatorList.add('+');
         operatorList.add('*');
-        Assert.assertEquals(7, parser.getExpresion(expressionList, operatorList).getResult());
+        Assert.assertEquals(7, parser.getExpression(expressionList, operatorList).getResult());
     }
 
-     public void parserExpressionTest() {
+    @Test
+    public void parserExpressionTest() {
         ExpressionParser parser = new ExpressionParser();
-        Assert.assertEquals(7, parser.toExpresion("1+2*3"));
+        Assert.assertEquals(7, parser.toExpression("1+2*3").getResult());
     }
 
 
