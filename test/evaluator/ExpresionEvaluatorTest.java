@@ -17,11 +17,11 @@ public class ExpresionEvaluatorTest {
         Operation sumOperation = new Operation("+", new Constant(1), mulOperation);
         Assert.assertEquals(7, sumOperation.getResult());
     }
-    
+
+    @Test
     public void complexExpressionTest(){
         ExpressionEvaluator evaluator = new ExpressionEvaluator();
         Assert.assertEquals(7, evaluator.getOperation("1+2*3").getResult());
-        Assert.assertEquals(6, evaluator.getOperation("1+2*3-3:4").getResult());
     }
     
 }
