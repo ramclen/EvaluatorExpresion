@@ -1,9 +1,11 @@
 package evaluator;
 
+import java.lang.reflect.Type;
+
 class ExpressionEvaluator {
 
-    public Operation getOperation(String string) {
-        return (Operation) new ExpressionParser().toExpression(string);
+    public Type evaluate(String string) {
+        return  new ExpressionParser().toExpression(string).getResult();
     }
 
 }
