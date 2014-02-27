@@ -41,7 +41,7 @@ public class ExpressionParser {
 
     private boolean isConstant(String character) {
         for (Character symbol : operators)
-            if (symbol.equals(character)) return false;
+            if (character.equals(symbol.toString())) return false;
         return true;
     }
 
