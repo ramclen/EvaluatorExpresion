@@ -30,7 +30,7 @@ public class ExpresionEvaluatorTest {
         expressionList.add(new Constant(3));
         operatorList.add("+");
         operatorList.add("*");
-        Assert.assertEquals(7, parser.getExpression(expressionList, operatorList).getResult());
+        Assert.assertEquals(7, parser.buildExpression(expressionList, operatorList).getResult());
     }
 
     @Test
