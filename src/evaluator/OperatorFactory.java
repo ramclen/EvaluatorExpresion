@@ -36,6 +36,7 @@ public class OperatorFactory {
         operatorNameDictionary.put("-", "Subtraction");
         operatorNameDictionary.put("/", "Division");
         operatorNameDictionary.put("*", "Multiplication");
+        operatorNameDictionary.put(":", "Division");
         operatorNameDictionary.put("<", "LessThan");
 
     }

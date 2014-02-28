@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ExpressionParser {
-    private final Character[] operators = {'*',':','+','-'};
+    private final String[] operators = {"*", ":","+", "-"};
     
     public Expression toExpression(String expressionString){
         ArrayList<String> operatorList = new ArrayList<>();
@@ -30,7 +30,7 @@ public class ExpressionParser {
 
     private boolean haveOperatorConflict(List<String> operatorList) {
         if (operatorList.size()>1)
-            haveLowerPriority(operatorList.get(operatorList.size()-1), operatorList.get(operatorList.size()-2));
+            return !haveLowerPriority(operatorList.get(operatorList.size()-1), operatorList.get(operatorList.size()-2));
         return false;
     }
 
@@ -40,7 +40,7 @@ public class ExpressionParser {
     }
 
     private boolean isConstant(String character) {
-        for (Character symbol : operators)
+        for (String symbol : operators)
             if (character.equals(symbol.toString())) return false;
         return true;
     }
@@ -53,19 +53,25 @@ public class ExpressionParser {
         for (int index = 0; index<operators.length; index++)
             if (operators[index].equals(operator)) return index;
         return 999999;
-        
     }
 
     public Expression getExpression(List<Expression> expressionList, List<String> operatorList) {
-        if (operatorList.size()!=0) {
-            return new Operation(operatorList.get(0).toString(),
-                    expressionList.get(0),
-                    getExpression(expressionList.subList(1, expressionList.size()), operatorList.subList(1, operatorList.size())));
+        while(operatorList.size()!=0){
+            if (haveOperatorConflict(operatorList)) {
+                Operation operation = new Operation(operatorList.get(operatorList.size() - 1), expressionList.get(expressionList.size() - 1), expressionList.get(expressionList.size() - 2));
+                expressionList.remove(expressionList.size() - 1);
+                expressionList.remove(expressionList.size() - 1);
+                operatorList.remove(operatorList.size()-1);
+                expressionList.add(operation);
+            }
+            Operation operation = new Operation(operatorList.get(0), expressionList.get(0), expressionList.get(1));
+            expressionList.remove(0);
+            expressionList.remove(0);
+            operatorList.remove(0);
+            expressionList.add(operation);
+
         }
-
         return expressionList.get(0);
-
-
 
     }
 
