@@ -37,6 +37,8 @@ public class ExpresionEvaluatorTest {
     public void parserExpressionTest() {
         ExpressionParser parser = new ExpressionParser();
         Assert.assertEquals(7, parser.toExpression("1+2*3").getResult());
+        Assert.assertEquals(5, parser.toExpression("1*2+3").getResult());
+        Assert.assertEquals(4, parser.toExpression("6:3+2*1").getResult());
     }
 
     @Test
