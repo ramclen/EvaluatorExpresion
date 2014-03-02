@@ -8,7 +8,7 @@ public class ExpressionParser {
     private ArrayList<String> operatorList;
     private ArrayList<Expression> expressionList;
     private final String[] operators = {"*", ":","+", "-"};
-
+    private OperatorDictionary operatorDictionary = new OperatorDictionary();
 
     public ExpressionParser() {
         operatorList = new ArrayList<>();
@@ -40,10 +40,8 @@ public class ExpressionParser {
             operatorList.add(value);
     }
 
-    private boolean isConstant(String character) {
-        for (String symbol : operators)
-            if (character.equals(symbol.toString())) return false;
-        return true;
+    private boolean isConstant(String symbol) {
+        return !operatorDictionary.containsKey(symbol);
     }
 
     private boolean haveOperatorConflict(List<String> operatorList) {
@@ -73,9 +71,9 @@ public class ExpressionParser {
         return new Operation(operatorList.get(0), expressionList.get(0), expressionList.get(1));
     }
 
-    private int getPriority(String operator) {
+    private int getPriority(String symbol) {
         for (int index = 0; index<operators.length; index++)
-            if (operators[index].equals(operator)) return index;
+            if (operators[index].equals(symbol)) return index;
         return 999999;
     }
 

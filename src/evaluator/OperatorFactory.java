@@ -3,41 +3,29 @@ package evaluator;
 
 import evaluator.Operators.Operator;
 
-import java.util.HashMap;
-
 public class OperatorFactory {
-    private HashMap<String, String> operatorNameDictionary;
+    private OperatorDictionary operatorDictionary;
 
     public OperatorFactory() {
-        operatorNameDictionary = new HashMap<>();
-        initDictionary();
+        operatorDictionary = new OperatorDictionary();
     }
-    
+
     public Operator create(String symbol,Object left, Object right){
         try {
             return (Operator) Class.forName(getClassName(symbol, left, right)).newInstance();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
     private String getClassName(String symbol, Object left, Object right) {
-        String operatorName = operatorNameDictionary.get(symbol);
-        return "evaluator.Operators."+ operatorName +"."+ left.getClass().getSimpleName() + right.getClass().getSimpleName() + operatorName;
+        String operatorName = operatorDictionary.get(symbol);
+        return getPathOfPackage(operatorName) + left.getClass().getSimpleName() + right.getClass().getSimpleName() + operatorName;
     }
 
-    private void initDictionary(){
-        operatorNameDictionary.put("+", "Sum");
-        operatorNameDictionary.put("-", "Subtraction");
-        operatorNameDictionary.put("/", "Division");
-        operatorNameDictionary.put("*", "Multiplication");
-        operatorNameDictionary.put(":", "Division");
-        operatorNameDictionary.put("<", "LessThan");
-
+    private String getPathOfPackage(String operatorName) {
+        return "evaluator.Operators." + operatorName + ".";
     }
+
 }
