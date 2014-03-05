@@ -1,4 +1,9 @@
-package evaluator;
+package evaluator.parsers;
+
+import evaluator.Constant;
+import evaluator.Expression;
+import evaluator.Operation;
+import evaluator.OperatorDictionary;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +60,7 @@ public class ExpressionParser {
             updateList(expressionList, operatorList, getNextOperation(operatorList,expressionList));
         return expressionList.get(0);
     }
+
 
     private boolean haveLowerPriority(String lower, String higher) {
         return getPriority(lower) > getPriority(higher);

@@ -1,6 +1,8 @@
 package evaluator;
 
 
+import evaluator.parsers.ExpressionParser;
+
 class ExpressionEvaluator {
 
     public <Type> Type evaluate(String string) {

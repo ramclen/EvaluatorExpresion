@@ -1,7 +1,9 @@
 package evaluator;
 
+import evaluator.parsers.ConstantToken;
 import evaluator.parsers.ExpressionToken;
-import evaluator.parsers.StringsParser;
+import evaluator.parsers.OperatorToken;
+
 import static junit.framework.Assert.assertEquals;
 
 import org.junit.Test;
