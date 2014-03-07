@@ -1,29 +1,31 @@
 package evaluator;
 
-import evaluator.parsers.ConstantToken;
-import evaluator.parsers.ExpressionToken;
-import evaluator.parsers.OperatorToken;
-
-import static junit.framework.Assert.assertEquals;
-
+import evaluator.parsers.*;
 import org.junit.Test;
-
 import java.util.Stack;
+import org.junit.Assert;
 
 public class ParserTest {
 
-    public void tokenParserTest() {
-
-
+    @Test
+    public void tokenizerTest() {
+        Assert.assertEquals(1, 0);
+        ExpressionTokenizer tokenizer = new ExpressionTokenizer("3+2");
+        Stack<ExpressionToken> stackResult= new Stack<>();
+        Stack<ExpressionToken> stackExpected = new Stack<>();
+        stackExpected.push(new ConstantToken<>("3"));
+        stackExpected.push(new OperatorToken("+"));
+        stackExpected.push(new ConstantToken<>("2"));
+        for (ExpressionToken token: tokenizer) {
+            stackResult.push(token);
+        }
+        Assert.assertEquals(stackExpected, stackResult);
     }
 
     @Test
-    public void StringsParserTest() {
-        Stack<ExpressionToken> stackResult = new StringsParser().parse("3+2");
-        Stack<ExpressionToken> stackExpected = new Stack<>();
-        stackExpected.push(new ConstantToken(3));
-        stackExpected.push(new OperatorToken(+));
-        stackExpected.push(new ConstantToken(2));
-        assertEquals(stackExpected, stackResult);
+    public void parserTest() {
+        Expression expressionResult = new Parser().parse("3+2");
+        Expression expressionExpected = new Operation("+", new Constant<>(3), new Constant<>(2));
+        Assert.assertEquals(expressionExpected, expressionResult);
     }
 }
