@@ -1,6 +1,6 @@
-package evaluator.Operators.Subtraction;
+package evaluator.operators.subtraction;
 
-import evaluator.Operators.Operator;
+import evaluator.operators.Operator;
 
 public class DoubleDoubleSubtraction implements Operator {
 

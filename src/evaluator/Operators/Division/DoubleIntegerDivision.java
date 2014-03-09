@@ -1,6 +1,6 @@
-package evaluator.Operators.Division;
+package evaluator.operators.Division;
 
-import evaluator.Operators.Operator;
+import evaluator.operators.Operator;
 
 public class DoubleIntegerDivision implements Operator {
     @Override

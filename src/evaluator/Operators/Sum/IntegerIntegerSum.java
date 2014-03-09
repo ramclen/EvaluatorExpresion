@@ -1,7 +1,6 @@
-package evaluator.Operators.Sum;
+package evaluator.operators.sum;
 
-import evaluator.Expression;
-import evaluator.Operators.Operator;
+import evaluator.operators.Operator;
 
 public class IntegerIntegerSum implements Operator{
 

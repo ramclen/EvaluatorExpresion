@@ -1,6 +1,6 @@
-package evaluator.Operators.Multiplication;
+package evaluator.operators.multiplication;
 
-import evaluator.Operators.Operator;
+import evaluator.operators.Operator;
 
 public class DoubleIntegerMultiplication implements Operator {
 

@@ -1,6 +1,6 @@
-package evaluator.Operators.Sum;
+package evaluator.operators.sum;
 
-import evaluator.Operators.Operator;
+import evaluator.operators.Operator;
 
 public class DoubleIntegerSum implements Operator {
 

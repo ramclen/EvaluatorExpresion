@@ -1,15 +1,13 @@
 package evaluator;
 
-import evaluator.Operators.Operator;
-
 import java.util.HashMap;
 
 public class OperatorDictionary extends HashMap<String, String>{
 
     {
-            put("+", "Sum");
-            put("-", "Subtraction");
-            put("*", "Multiplication");
+            put("+", "sum");
+            put("-", "subtraction");
+            put("*", "multiplication");
             put(":", "Division");
             put("<", "LessThan");
     }

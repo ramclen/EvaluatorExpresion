@@ -1,6 +1,6 @@
-package evaluator.Operators.LessThan;
+package evaluator.operators.LessThan;
 
-import evaluator.Operators.Operator;
+import evaluator.operators.Operator;
 
 public class IntegerDoubleLessThan implements Operator{
 

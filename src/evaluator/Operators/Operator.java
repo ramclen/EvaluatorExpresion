@@ -1,4 +1,4 @@
-package evaluator.Operators;
+package evaluator.operators;
 
 
 public interface Operator {

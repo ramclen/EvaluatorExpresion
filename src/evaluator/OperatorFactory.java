@@ -1,7 +1,7 @@
 package evaluator;
 
 
-import evaluator.Operators.Operator;
+import evaluator.operators.Operator;
 
 public class OperatorFactory {
     private OperatorDictionary operatorDictionary;
@@ -25,7 +25,7 @@ public class OperatorFactory {
     }
 
     private String getPathOfPackage(String operatorName) {
-        return "evaluator.Operators." + operatorName + ".";
+        return "evaluator.operators." + operatorName + ".";
     }
 
 }

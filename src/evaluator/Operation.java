@@ -1,6 +1,6 @@
 package evaluator;
 
-import evaluator.Operators.Operator;
+import evaluator.operators.Operator;
 
 public class Operation implements Expression{
     private final String symbol;
