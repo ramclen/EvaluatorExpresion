@@ -1,6 +1,5 @@
 package evaluator;
 
-import evaluator.Operators.Operator;
 import evaluator.parsers.*;
 import org.junit.Test;
 import java.util.Stack;
