@@ -8,7 +8,7 @@ public class OperatorDictionary extends HashMap<String, String>{
             put("+", "sum");
             put("-", "subtraction");
             put("*", "multiplication");
-            put(":", "Division");
+            put(":", "division");
             put("<", "LessThan");
     }
 

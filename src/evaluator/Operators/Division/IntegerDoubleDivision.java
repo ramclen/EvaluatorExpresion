@@ -1,4 +1,4 @@
-package evaluator.operators.Division;
+package evaluator.operators.division;
 
 import evaluator.operators.Operator;
 

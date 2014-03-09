@@ -2,12 +2,16 @@ package evaluator.parsers;
 
 import evaluator.Constant;
 import evaluator.Expression;
+import evaluator.parsers.tokenizer.tokens.ConstantToken;
+import evaluator.parsers.tokenizer.tokens.ExpressionToken;
+import evaluator.parsers.tokenizer.ExpressionTokenizer;
+import evaluator.parsers.tokenizer.tokens.OperatorToken;
 
 import java.util.Stack;
 
 public class Parser {
     private Stack<Expression> expressions;
-    private Stack<OperatorToken> operators; 
+    private Stack<OperatorToken> operators;
     
     public Parser() {
         expressions = new Stack<>();
@@ -15,13 +19,8 @@ public class Parser {
     }
 
     public Expression parse(String string) {
-        ExpressionTokenizer tokenizer = new ExpressionTokenizer(string);
-        for (ExpressionToken token : tokenizer) {
+        return null;
 
-            addToSpecificStack(token);
-            
-
-        }
     }
 
     //TODO estamos metiendo por el momento strings en las constantes

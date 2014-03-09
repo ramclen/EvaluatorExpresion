@@ -1,6 +1,4 @@
-package evaluator.parsers;
-
-import evaluator.parsers.ExpressionToken;
+package evaluator.parsers.tokenizer.tokens;
 
 public class ConstantToken <Type> implements ExpressionToken{
 

@@ -1,6 +1,7 @@
-package evaluator.parsers;
+package evaluator.parsers.tokenizer;
 
 import evaluator.OperatorDictionary;
+import evaluator.parsers.tokenizer.tokens.OperatorToken;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;

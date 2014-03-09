@@ -1,4 +1,4 @@
-package evaluator.parsers;
+package evaluator.parsers.tokenizer.tokens;
 
 public class OperatorToken implements ExpressionToken {
 
