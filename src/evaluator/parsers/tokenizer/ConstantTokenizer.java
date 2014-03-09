@@ -16,12 +16,18 @@ public class ConstantTokenizer implements ExpressionTokenizer<ConstantToken>{
     }
 
     private void extractConstants(String string) {
-        int lastIndex=0;
-        for (int index = 0; index < string.length(); index++)
-            if (isOperator(string, index)) {
-                constants.add(string.substring(lastIndex, index));
-                lastIndex = index+1;
-            }
+        for (int index = 0; index < string.length(); index++) {
+            int nextPosition = getNextOperatorPosition(string, index);
+            constants.add(string.substring(index, nextPosition));
+            index=nextPosition;
+        }
+    }
+
+    private int getNextOperatorPosition(String string, int index) {
+        for (int nextIndex = index; nextIndex < string.length(); nextIndex++)
+            if (isOperator(string, nextIndex))
+                return nextIndex;
+        return string.length();
     }
 
     private boolean isOperator(String string, int index) {
