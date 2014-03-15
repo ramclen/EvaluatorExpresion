@@ -1,12 +1,16 @@
 package evaluator;
 
 import evaluator.parsers.*;
+import evaluator.parsers.tokenizer.OperatorTokenizer;
 import evaluator.parsers.tokenizer.tokens.ConstantToken;
 import evaluator.parsers.tokenizer.ConstantTokenizer;
-import evaluator.parsers.tokenizer.OperationTokenizer;
 import evaluator.parsers.tokenizer.tokens.OperatorToken;
 import org.junit.Test;
+
+import java.util.Queue;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 import org.junit.Assert;
 
 public class ParserTest {
@@ -28,7 +32,7 @@ public class ParserTest {
 
     @Test
     public void operatorTokenizerTest() {
-        OperationTokenizer tokenizer = new OperationTokenizer("3+2-3*5");
+        OperatorTokenizer tokenizer = new OperatorTokenizer("3+2-3*5");
         Stack<OperatorToken> stackExpected = new Stack();
         stackExpected.push(new OperatorToken("*"));
         stackExpected.push(new OperatorToken("-"));
@@ -39,9 +43,16 @@ public class ParserTest {
 
     }
 
+    @Test
     public void parserTest() {
-        Expression expressionResult = new Parser().parse("3+2");
-        Expression expressionExpected = new Operation("+", new Constant<>(3), new Constant<>(2));
-        Assert.assertEquals(expressionExpected, expressionResult);
+        Queue<Expression> expressions = new ConcurrentLinkedQueue<>();
+        Queue<OperatorToken> operators = new ConcurrentLinkedQueue<>();
+        expressions.add(new Constant<>(1));
+        expressions.add(new Constant<>(2));
+        expressions.add(new Constant<>(3));
+        operators.add(new OperatorToken("+"));
+        operators.add(new OperatorToken("*"));
+        Expression expressionResult = new Parser(new ShuntingYardStrategy()).parse(expressions, operators);
+        Assert.assertEquals(7, expressionResult.getResult());
     }
 }

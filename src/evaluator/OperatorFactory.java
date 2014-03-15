@@ -25,7 +25,7 @@ public class OperatorFactory {
     }
 
     private String getPathOfPackage(String operatorName) {
-        return "evaluator.operators." + operatorName + ".";
+        return "evaluator.operators." + operatorName.toLowerCase() + ".";
     }
 
 }
