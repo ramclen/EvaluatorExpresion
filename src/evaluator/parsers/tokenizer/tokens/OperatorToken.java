@@ -12,4 +12,5 @@ public class OperatorToken implements ExpressionToken {
     public Object getValue() {
         return symbol;
     }
+
 }

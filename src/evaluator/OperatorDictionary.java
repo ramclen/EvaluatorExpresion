@@ -5,12 +5,10 @@ import java.util.HashMap;
 public class OperatorDictionary extends HashMap<String, String>{
 
     {
-            put("+", "sum");
-            put("-", "subtraction");
-            put("*", "multiplication");
-            put(":", "division");
+            put("+", "Sum");
+            put("-", "Subtraction");
+            put("*", "Multiplication");
+            put(":", "Division");
             put("<", "LessThan");
     }
-
-
 }

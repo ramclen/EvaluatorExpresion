@@ -1,5 +1,7 @@
 package evaluator.parsers;
 
+import evaluator.parsers.tokenizer.tokens.OperatorToken;
+
 import java.util.LinkedHashMap;
 
 public class OperatorRules extends LinkedHashMap<String, Integer>{
@@ -13,4 +15,12 @@ public class OperatorRules extends LinkedHashMap<String, Integer>{
             return false;
         return get(minnor) > get(major);
     }
+
+    public boolean minnorPriority(OperatorToken minnor, OperatorToken major) {
+        if(minnor == null || major == null)
+            return false;
+        return get(minnor.getValue()) > get(major.getValue());
+    }
+
+
 }
