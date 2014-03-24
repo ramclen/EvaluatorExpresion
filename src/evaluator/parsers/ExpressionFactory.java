@@ -16,9 +16,12 @@ public class ExpressionFactory {
 
     private void createNextExpression(Stack<Expression> expressions, Stack<OperatorToken> operators) {
         OperatorToken nextOperator = operators.pop();
-        if(haveOperatorConflict(operators, nextOperator))
+        if(haveOperatorConflict(operators, nextOperator)) {
             resolveOperatorConflict(expressions, operators);
-        addNewOperation(expressions,nextOperator);
+            operators.add(nextOperator);
+        }
+        else
+            addNewOperation(expressions, nextOperator);
     }
 
     private boolean haveOperatorConflict(Stack<OperatorToken> operators, OperatorToken nextOperator) {

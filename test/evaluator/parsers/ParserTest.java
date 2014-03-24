@@ -1,5 +1,7 @@
-package evaluator;
+package evaluator.parsers;
 
+import evaluator.Constant;
+import evaluator.Expression;
 import evaluator.parsers.*;
 import evaluator.parsers.tokenizer.OperatorTokenizer;
 import evaluator.parsers.tokenizer.tokens.ConstantToken;
@@ -45,8 +47,8 @@ public class ParserTest {
 
     @Test
     public void parserTest() {
-        Queue<Expression> expressions = new ConcurrentLinkedQueue<>();
-        Queue<OperatorToken> operators = new ConcurrentLinkedQueue<>();
+        Stack<Expression> expressions = new Stack<>();
+        Stack<OperatorToken> operators = new Stack<>();
         expressions.add(new Constant<>(1));
         expressions.add(new Constant<>(2));
         expressions.add(new Constant<>(3));

@@ -19,14 +19,14 @@ public class ShuntingYardStrategy implements ParserStrategy{
     }
 
     @Override
-    public Expression parse(Queue<Expression> expressionsQueue, Queue<OperatorToken> operatorsQueue) {
+    public Expression run(Stack<Expression> expressionsQueue, Stack<OperatorToken> operatorsQueue) {
         while (!operatorsQueue.isEmpty())
             if(!successfulShunting(expressionsQueue, operatorsQueue))
                 expressions.add(expressionFactory.buildExpression(getProblematicExpressions(), getProblematicOperators()));
         return expressionFactory.buildExpression(expressions, operators);
     }
 
-    private boolean successfulShunting(Queue<Expression> expressionsQueue, Queue<OperatorToken> operatorsQueue) {
+    private boolean successfulShunting(Stack<Expression> expressionsQueue, Stack<OperatorToken> operatorsQueue) {
         shuntingExpressions(expressionsQueue);
         return shuntingOperator(operatorsQueue);
     }
@@ -44,15 +44,15 @@ public class ShuntingYardStrategy implements ParserStrategy{
         return operators;
     }
 
-    private void shuntingExpressions(Queue<Expression> expressionsQueue) {
+    private void shuntingExpressions(Stack<Expression> expressionsQueue) {
         if(expressions.isEmpty())
-            expressions.push(expressionsQueue.poll());
-        expressions.push(expressionsQueue.poll());
+            expressions.push(expressionsQueue.pop());
+        expressions.push(expressionsQueue.pop());
     }
 
-    private boolean shuntingOperator(Queue<OperatorToken> operatorsQueue) {
+    private boolean shuntingOperator(Stack<OperatorToken> operatorsQueue) {
         boolean shuntingResult = !highPriorityOperator(operatorsQueue.peek());
-        operators.push(operatorsQueue.poll());
+        operators.push(operatorsQueue.pop());
         return shuntingResult;
     }
 

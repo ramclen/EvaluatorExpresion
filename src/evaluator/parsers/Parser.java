@@ -4,6 +4,7 @@ import evaluator.Expression;
 import evaluator.parsers.tokenizer.tokens.OperatorToken;
 
 import java.util.Queue;
+import java.util.Stack;
 
 public class Parser {
     private final ParserStrategy strategy;
@@ -12,8 +13,8 @@ public class Parser {
         this.strategy = strategy;
     }
 
-    public Expression parse(Queue<Expression> expressionsQueue, Queue<OperatorToken> operatorsQueue) {
-        return strategy.parse(expressionsQueue,operatorsQueue);
+    public Expression parse(Stack<Expression> expressionsQueue, Stack<OperatorToken> operatorsQueue) {
+        return strategy.run(expressionsQueue, operatorsQueue);
     }
 }
 

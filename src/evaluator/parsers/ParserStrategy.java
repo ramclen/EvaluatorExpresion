@@ -7,5 +7,5 @@ import java.util.Queue;
 import java.util.Stack;
 
 public interface ParserStrategy {
-    public Expression parse(Queue<Expression> expressions, Queue<OperatorToken> operators);
+    public Expression run(Stack<Expression> expressions, Stack<OperatorToken> operators);
 }
