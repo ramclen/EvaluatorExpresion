@@ -28,23 +28,23 @@ public class ShuntingYardStrategyTest {
         operators.add(new OperatorToken("*"));
         operators.add(new OperatorToken("*"));
 
-        Assert.assertEquals(16, strategy.run(expressions,
-                                             operators).getResult());
+        Assert.assertEquals(16, strategy.run(expressions,operators).getResult());
     }
 
-    private Stack<Expression> createTwoChangesOperatorExpressionStack() {
-        return buildStack(Constant::new, 1,2,3,1,3,3);
+    @Test
+    public void twoOperationParenthesisTest() {
+        ParserStrategy strategy = new ShuntingYardStrategy();
+        Stack<Expression> expressions = new Stack<>();
+        Stack<OperatorToken> operators = new Stack<>();
+        expressions.add(new Constant<>(1));
+        expressions.add(new Constant<>(2));
+        operators.add(new OperatorToken(")"));
+        operators.add(new OperatorToken("+"));
+        operators.add(new OperatorToken("("));
+
+        Assert.assertEquals(3, strategy.run(expressions,operators).getResult());
     }
 
-    private <Type, Value> Stack<Type> buildStack(Builder<Type, Value> builder, Value...values) {
-        Stack<Type> stack = new Stack<>();
-        for (Value value : values)
-            stack.add(builder.build(value));
-        return stack;
-    }
 
-    private interface  Builder <Type, Value>{
-        public Type build(Value value);
-    }
 
 }
