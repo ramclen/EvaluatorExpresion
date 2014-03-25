@@ -54,7 +54,7 @@ public class ParserTest {
         expressions.add(new Constant<>(3));
         operators.add(new OperatorToken("+"));
         operators.add(new OperatorToken("*"));
-        Expression expressionResult = new Parser(new ShuntingYardStrategy()).parse(expressions, operators);
+        Expression expressionResult = new Parser(new ShuntingYardStrategy(new ExpressionFactory())).parse(expressions, operators);
         Assert.assertEquals(7, expressionResult.getResult());
     }
 }
