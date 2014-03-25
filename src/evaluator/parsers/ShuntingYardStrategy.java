@@ -18,46 +18,27 @@ public class ShuntingYardStrategy implements ParserStrategy{
     }
 
     @Override
-    public Expression run(Stack<Expression> expressionsQueue, Stack<OperatorToken> operatorsQueue) {
-        while (!operatorsQueue.isEmpty()) {
-            if (isOpenParenthesis(operatorsQueue.peek()))
-                expressions.add(getOperationsInParenthesis(expressionsQueue, operatorsQueue));
-            else if(!successfulShunting(expressionsQueue, operatorsQueue))
+    public Expression run(Stack<Expression> externalExpressions, Stack<OperatorToken> externalOperators) {
+        while (!externalOperators.isEmpty()) {
+            if (isOpenParenthesis(externalOperators.peek())) {
+                externalOperators.pop();
+                expressions.add(run(externalExpressions, externalOperators));
+            } else if (isCloseParenthesis(externalOperators.peek())) {
+                externalOperators.pop();
+                return expressionFactory.buildExpression(expressions, operators);
+            }else if (!successfulShunting(externalExpressions, externalOperators))
                 expressions.add(expressionFactory.buildExpression(getProblematicExpressions(), getProblematicOperators()));
         }
         return expressionFactory.buildExpression(expressions, operators);
     }
 
-    private Expression getOperationsInParenthesis(Stack<Expression> externalExpressions, Stack<OperatorToken> externalOperators) {
-        Stack<Expression> expressions = new Stack<>();
-        Stack<OperatorToken> operators = new Stack<>();
-        externalOperators.pop();
-        int openParenthesis = 1;
-        while(openParenthesis != 0) {
-            OperatorToken operator = externalOperators.pop();
-            if (isOpenParenthesis(operator))
-                openParenthesis++;
-            else{
-                if (isCloseParenthesis(operator))
-                    openParenthesis--;
-
-            }
-            if(!externalOperators.isEmpty()){
-                operators.add(operator);
-                expressions.add(externalExpressions.pop());
-                expressions.add(externalExpressions.pop());
-            }
-        }
-        return new ShuntingYardStrategy(new ExpressionFactory()).run(expressions, operators);
-    }
-
     private boolean isOpenParenthesis(OperatorToken operatorToken) {
-        return (String)operatorToken.getValue() =="(";
+        return operatorToken.getValue() =="(";
     }
 
     private boolean successfulShunting(Stack<Expression> expressionsQueue, Stack<OperatorToken> operatorsQueue) {
-        shuntingExpressions(expressionsQueue);
-        return shuntingOperator(operatorsQueue);
+        shuntingExpressions(expressionsQueue, expressions);
+        return shuntingOperator(operatorsQueue, operators);
     }
 
     private Stack<Expression> getProblematicExpressions() {
@@ -73,15 +54,15 @@ public class ShuntingYardStrategy implements ParserStrategy{
         return operators;
     }
 
-    private void shuntingExpressions(Stack<Expression> expressionsQueue) {
-        if(expressions.isEmpty())
-            expressions.push(expressionsQueue.pop());
-        expressions.push(expressionsQueue.pop());
+    private void shuntingExpressions(Stack<Expression> targetStack, Stack<Expression> destinyStack ) {
+        if(destinyStack.isEmpty())
+            destinyStack.push(targetStack.pop());
+        destinyStack.push(targetStack.pop());
     }
 
-    private boolean shuntingOperator(Stack<OperatorToken> operatorsQueue) {
-        boolean shuntingResult = !highPriorityOperator(operatorsQueue.peek());
-        operators.push(operatorsQueue.pop());
+    private boolean shuntingOperator(Stack<OperatorToken> targetStack, Stack<OperatorToken> destinyStack) {
+        boolean shuntingResult = !highPriorityOperator(targetStack.peek());
+        destinyStack.push(targetStack.pop());
         return shuntingResult;
     }
 
