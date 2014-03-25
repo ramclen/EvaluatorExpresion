@@ -11,15 +11,11 @@ public class OperatorRules extends LinkedHashMap<String, Integer>{
     }
 
     public boolean minnorPriority(String minnor, String major) {
-        if(minnor == null || major == null)
-            return false;
-        return get(minnor) > get(major);
+        return !(minnor == null || major == null) && get(minnor) > get(major);
     }
 
     public boolean minnorPriority(OperatorToken minnor, OperatorToken major) {
-        if(minnor == null || major == null)
-            return false;
-        return get(minnor.getValue()) > get(major.getValue());
+        return !(minnor == null || major == null) && get(minnor.getValue()) > get(major.getValue());
     }
 
 
