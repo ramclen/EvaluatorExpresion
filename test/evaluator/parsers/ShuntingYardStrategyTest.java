@@ -61,4 +61,26 @@ public class ShuntingYardStrategyTest {
         Assert.assertEquals(0, strategy.run(expressions, operators).getResult());
     }
 
+    @Test
+    public void exhaustiveParenthesisTest() {
+        ParserStrategy strategy = new ShuntingYardStrategy(new ExpressionFactory());
+        Stack<Expression> expressions = new Stack<>();
+        Stack<OperatorToken> operators = new Stack<>();
+        expressions.add(new Constant<>(1));
+        expressions.add(new Constant<>(2));
+        expressions.add(new Constant<>(3));
+        expressions.add(new Constant<>(1));
+        expressions.add(new Constant<>(3));
+        expressions.add(new Constant<>(3));
+        operators.add(new OperatorToken(")"));
+        operators.add(new OperatorToken("+"));
+        operators.add(new OperatorToken("("));
+        operators.add(new OperatorToken("*"));
+        operators.add(new OperatorToken("+"));
+        operators.add(new OperatorToken("*"));
+        operators.add(new OperatorToken("*"));
+
+        Assert.assertEquals(18, strategy.run(expressions, operators).getResult());
+    }
+
 }
