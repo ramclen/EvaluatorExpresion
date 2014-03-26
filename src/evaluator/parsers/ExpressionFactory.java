@@ -9,6 +9,7 @@ import java.util.Stack;
 public class ExpressionFactory {
 
     public Expression buildExpression(Stack<Expression> expressions, Stack<OperatorToken> operators) {
+        if(expressions.size()==1) return expressions.pop();
         while (!operators.isEmpty())
             createNextExpression(expressions, operators);
         return expressions.pop();
@@ -25,10 +26,7 @@ public class ExpressionFactory {
     }
 
     private boolean haveOperatorConflict(Stack<OperatorToken> operators, OperatorToken nextOperator) {
-        if(!operators.isEmpty())
-            return new OperatorRules().minnorPriority((String) nextOperator.getValue(), (String)operators.peek().getValue());
-        return false;
-
+        return !operators.isEmpty() && new OperatorRules().minnorPriority(nextOperator, operators.peek());
     }
 
     private void resolveOperatorConflict(Stack<Expression> expressions, Stack<OperatorToken> operators) {

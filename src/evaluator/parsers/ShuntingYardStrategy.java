@@ -19,17 +19,19 @@ public class ShuntingYardStrategy implements ParserStrategy{
 
     @Override
     public Expression run(Stack<Expression> externalExpressions, Stack<OperatorToken> externalOperators) {
-        while (!externalOperators.isEmpty()) {
+        while (!externalOperators.isEmpty() && !isCloseParenthesis(externalOperators.peek()))
             if (isOpenParenthesis(externalOperators.peek())) {
-                externalOperators.pop();
-                expressions.add(run(externalExpressions, externalOperators));
-            } else if (isCloseParenthesis(externalOperators.peek())) {
-                externalOperators.pop();
-                return expressionFactory.buildExpression(expressions, operators);
+                expressions.add(extractExpressionInParenthesis(externalExpressions, externalOperators));
             }else if (!successfulShunting(externalExpressions, externalOperators))
                 expressions.add(expressionFactory.buildExpression(getProblematicExpressions(), getProblematicOperators()));
-        }
         return expressionFactory.buildExpression(expressions, operators);
+    }
+
+    private Expression extractExpressionInParenthesis(Stack<Expression> externalExpressions, Stack<OperatorToken> externalOperators) {
+        externalOperators.pop();
+        Expression expression = new ShuntingYardStrategy(expressionFactory).run(externalExpressions, externalOperators);
+        externalOperators.pop();
+        return expression;
     }
 
     private boolean isOpenParenthesis(OperatorToken operatorToken) {
@@ -37,7 +39,18 @@ public class ShuntingYardStrategy implements ParserStrategy{
     }
 
     private boolean successfulShunting(Stack<Expression> expressionsQueue, Stack<OperatorToken> operatorsQueue) {
-        shuntingExpressions(expressionsQueue, expressions);
+        OperatorToken operatorToken = operatorsQueue.pop();
+        if(!operatorsQueue.isEmpty()){
+        if(!isOpenParenthesis(operatorsQueue.peek()) )
+            shuntingExpressions(expressionsQueue, expressions);
+        else{
+            if(expressions.isEmpty())
+                expressions.add(expressionsQueue.pop());
+            expressions.add(extractExpressionInParenthesis(expressionsQueue, operatorsQueue));
+        }
+        }else
+            shuntingExpressions(expressionsQueue, expressions);
+        operatorsQueue.push(operatorToken);
         return shuntingOperator(operatorsQueue, operators);
     }
 
@@ -71,6 +84,6 @@ public class ShuntingYardStrategy implements ParserStrategy{
     }
 
     public boolean isCloseParenthesis(OperatorToken operator){
-        return (String)operator.getValue() ==")";
+        return operator.getValue() ==")";
     }
 }
