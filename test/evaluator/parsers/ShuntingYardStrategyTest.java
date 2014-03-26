@@ -28,7 +28,7 @@ public class ShuntingYardStrategyTest {
         operators.add(new OperatorToken("*"));
         operators.add(new OperatorToken("*"));
 
-        Assert.assertEquals(16, strategy.run(expressions,operators).getResult());
+        Assert.assertEquals(16, strategy.run(expressions, operators).getResult());
     }
 
     @Test
@@ -42,8 +42,23 @@ public class ShuntingYardStrategyTest {
         operators.add(new OperatorToken("+"));
         operators.add(new OperatorToken("("));
 
-        Assert.assertEquals(3, strategy.run(expressions,operators).getResult());
+        Assert.assertEquals(3, strategy.run(expressions, operators).getResult());
     }
 
+    @Test
+    public void twoOperationsWithParenthesisTest() {
+        ParserStrategy strategy = new ShuntingYardStrategy(new ExpressionFactory());
+        Stack<Expression> expressions = new Stack<>();
+        Stack<OperatorToken> operators = new Stack<>();
+        expressions.add(new Constant<>(1));
+        expressions.add(new Constant<>(2));
+        expressions.add(new Constant<>(3));
+        operators.add(new OperatorToken(")"));
+        operators.add(new OperatorToken("+"));
+        operators.add(new OperatorToken("("));
+        operators.add(new OperatorToken("-"));
+
+        Assert.assertEquals(0, strategy.run(expressions, operators).getResult());
+    }
 
 }
